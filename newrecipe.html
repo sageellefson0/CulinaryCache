@@ -1,46 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Culinary Cache</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/feather-icons"></script>
   <script src="https://kit.fontawesome.com/97132013e5.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <header>
-
     <div class="headerContainer">
-        <a href="index.html"><h1 id="logo"> Culinary Cache  <i class="fa-solid fa-bowl-rice">  </i>
-        </h1> </a>
-
-
-    <div class="navbar"> 
-    <a href="login.html" class="navlink">Log In</a>
-    <a href="signup.html" class="navlink">Sign Up</a>
-
-  </div>
-</div>
-
+        <h1 id="logo"> Culinary Cache  <i class="fa-solid fa-bowl-rice">  </i></h1>
+        <div class="navbar"> 
+            <a href="login.html" class="navlink">Log In</a>
+            <a href="signup.html" class="navlink">Sign Up</a>
+        </div>
+    </div>
   </header>
-
   <main>
-
-  
-
-
-
-
+    <div id="recipeFormContainer">
+      <h3 class="formLabel">
+        Recipe Name: <br>
+        <textarea id="recipeName"></textarea>
+      </h3> 
+      <h3 class="formLabel">
+        Ingredients: <br>
+        <textarea id="ingredients"></textarea>
+      </h3> 
+      <h3 class="formLabel">
+        Baking/Cooking Instructions: <br>
+        <textarea id="instructions"></textarea>
+      </h3> 
+      <h3 class="formLabel">
+        Notes: <br>
+        <textarea id="notes"></textarea>
+      </h3> 
+      <h3 class="formLabel">
+        Source: <br>
+        <textarea id="source"></textarea>
+      </h3> 
+      <button onclick="saveRecipe()">Save Recipe</button>
+    </div>
   </main>
+  <footer> 
+    Culinary Cache <i class="fa-solid fa-bowl-rice"></i> | Sage Ellefson © 2024 sageellefson.com
+  </footer>
 
+  <script>
+    function saveRecipe() {
+    // Get values from the form
+    var recipeName = document.getElementById("recipeName").value;
+    var ingredients = document.getElementById("ingredients").value;
+    var instructions = document.getElementById("instructions").value;
+    var notes = document.getElementById("notes").value;
+    var source = document.getElementById("source").value;
 
-<footer> 
-  Culinary Cache <i class="fa-solid fa-bowl-rice"></i> | Sage Ellefson © 2024 sageellefson.com
-</footer>
+    // Ask for confirmation
+    if (!confirm("Are you sure you want to save this recipe?")) {
+        return; // If the user cancels, do nothing
+    }
 
+    // Create XML string
+    var xmlString = '<recipe>\n';
+    xmlString += '  <name>' + recipeName + '</name>\n';
+    xmlString += '  <ingredients>' + ingredients + '</ingredients>\n';
+    xmlString += '  <instructions>' + instructions + '</instructions>\n';
+    xmlString += '  <notes>' + notes + '</notes>\n';
+    xmlString += '  <source>' + source + '</source>\n';
+    xmlString += '</recipe>';
+
+    // Send data to server-side script
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        }
+    };
+    xhttp.open("POST", "saveRecipe.php", true); // Change "saveRecipe.php" to the path of your PHP file
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("xml=" + encodeURIComponent(xmlString));
+}
+
+  </script>
 </body>
-
 </html>
