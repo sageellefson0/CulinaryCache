@@ -76,7 +76,7 @@
             console.log(this.responseText);
         }
     };
-    xhttp.open("POST", "saveRecipe.php", true); // Change "saveRecipe.php" to the path of your PHP file
+    xhttp.open("POST", "saveRecipe.php", true); 
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("xml=" + encodeURIComponent(xmlString));
 }
