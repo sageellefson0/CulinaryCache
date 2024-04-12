@@ -16,8 +16,14 @@ html {
     color: #181819;
     padding-left: 30px;
     font-size: 40px;
-
+    
 }
+
+a{
+text-decoration: none;
+}
+
+a:visited {color:#181819;} 
 
 .navbar{
     padding: 10px;
@@ -26,17 +32,27 @@ html {
     padding-bottom: 20px;
 }
 
-.navlink{
+.navlink {
     text-decoration: none;
     color: #181819;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
     padding: 5px;
-    border-bottom: 2px #181819 solid;
 }
 
-.navlink:hover{
-    border-bottom: 2px #EE5844 solid;
+.navlink::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #EE5844;
+    transition: width 0.7s ease; 
+}
 
+.navlink:hover::before {
+    width: 100%;
 }
 
 .headerContainer{
@@ -48,6 +64,7 @@ html {
     text-align: center;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: normal;
+    font-size: 18px;
     margin: 60px;
 
 
@@ -57,7 +74,8 @@ html {
 #imgDivHomepage{
     text-align: center;
     background-color: #EE5844;
-    padding: 20px 15px;
+    padding: 40px 15px;
+    margin-bottom: 80px;
 }
 
 .homepageImg{
@@ -68,3 +86,62 @@ html {
 
 }
 
+
+#newRecipeBtn{
+    border: #181819 2px solid;
+    background-color: #F5F5F5;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    padding: 10px;
+    transition: border-color .7s ease;
+    font-size: 18px;
+    box-shadow: 0 4px 6px -2px #EE5844;
+
+
+}
+
+#newRecipeBtn:hover{
+    border: #EE5844 2px solid;
+}
+
+#stepsDivContainer{
+    text-align: center;
+    margin-left: 30px;
+}
+
+#stepsDiv{
+width: 54%;
+margin: 0 auto; 
+text-align: left;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+color: #181819;
+font-size: 18px;
+
+
+
+}
+span.step {
+    background: #EE5844;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #F5F5F5;
+    font-size: 20px;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 5px;
+    text-align: center;
+    width: 1.6em; 
+  }
+  
+
+
+
+
+  footer{
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #181819;
+  }
